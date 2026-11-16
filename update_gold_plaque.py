@@ -30,7 +30,7 @@ def prepare_gold_plaque():
         font_web = ImageFont.load_default()
         
     names_text = "Vandan & Riddhi"
-    date_text = "29 . 12 . 2027"
+    date_text = "29 . 1 . 2027"
     web_text = "rivawedding.online"
     
     # Draw Names centered

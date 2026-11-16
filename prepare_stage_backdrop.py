@@ -34,7 +34,7 @@ def prepare_backdrop():
     card_composite.paste(garden_bg, (121, 190), arch_mask)
     
     # 5. Make the wedding date prominently visible at the top as well as the bottom!
-    # Top has "SAVE THE DATE". Let's add the wedding date "29 . 12 . 2027" cleanly below "SAVE THE DATE"
+    # Top has "SAVE THE DATE". Let's add the wedding date "29 . 1 . 2027" cleanly below "SAVE THE DATE"
     # in an elegant gold serif style matching the card typography
     draw = ImageDraw.Draw(card_composite)
     
@@ -49,7 +49,7 @@ def prepare_backdrop():
     if font_date is None:
         font_date = ImageFont.load_default()
         
-    date_text = "29 . 12 . 2027"
+    date_text = "29 . 1 . 2027"
     # Measure text
     bbox = draw.textbbox((0, 0), date_text, font=font_date)
     tw = bbox[2] - bbox[0]
@@ -71,7 +71,7 @@ def prepare_backdrop():
 def prepare_gold_plaque():
     # Create an ultra-luxurious champagne-gold inscribed plaque for the front of the stage base:
     # "Vandan & Riddhi"
-    # "29.12.2027"
+    # "29.1.2027"
     pw, ph = 800, 240
     plaque = Image.new('RGBA', (pw, ph), (0, 0, 0, 0))
     pdraw = ImageDraw.Draw(plaque)
@@ -96,7 +96,7 @@ def prepare_gold_plaque():
         font_date = ImageFont.load_default()
         
     names_text = "Vandan & Riddhi"
-    date_text = "29 . 12 . 2027"
+    date_text = "29 . 1 . 2027"
     
     # Draw Names centered
     nb = pdraw.textbbox((0, 0), names_text, font=font_names)

@@ -29,7 +29,7 @@ def create_flawless_backdrop():
     card_clean = card.copy()
     card_clean.paste(pure_garden, (121, 190), arch_mask)
     
-    # 4. Add prominent "29 . 12 . 2027" wedding date at the top below "SAVE THE DATE"
+    # 4. Add prominent "29 . 1 . 2027" wedding date at the top below "SAVE THE DATE"
     draw = ImageDraw.Draw(card_clean)
     font_date = None
     for f in ["georgiaz.ttf", "timesbi.ttf", "georgia.ttf", "times.ttf", "arial.ttf"]:
@@ -41,7 +41,7 @@ def create_flawless_backdrop():
     if font_date is None:
         font_date = ImageFont.load_default()
         
-    date_str = "29 . 12 . 2027"
+    date_str = "29 . 1 . 2027"
     bbox = draw.textbbox((0, 0), date_str, font=font_date)
     tw = bbox[2] - bbox[0]
     tx = (cw - tw) // 2
