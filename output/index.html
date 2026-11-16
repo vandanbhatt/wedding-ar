@@ -3,17 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vandan & Riddhi – 3D Wedding AR Experience</title>
+  <title>Vandan &amp; Riddhi – 3D Wedding AR Experience</title>
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: radial-gradient(circle at 50% 20%, #1e1b18, #0d0c0b);
       color: #eae5dc;
@@ -24,22 +20,18 @@
       padding: 28px 16px 52px;
       font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
-    header {
-      text-align: center;
-      margin-bottom: 20px;
-      max-width: 720px;
-    }
+    header { text-align: center; margin-bottom: 20px; max-width: 720px; }
     .badge {
       display: inline-block;
       font-size: 0.72rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: #d4af37;
-      border: 1px solid rgba(212, 175, 55, 0.4);
+      border: 1px solid rgba(212,175,55,0.4);
       padding: 5px 14px;
       border-radius: 20px;
       margin-bottom: 12px;
-      background: rgba(212, 175, 55, 0.08);
+      background: rgba(212,175,55,0.08);
     }
     h1 {
       font-size: 2.4rem;
@@ -59,103 +51,148 @@
       font-size: 1.15rem;
       letter-spacing: 1px;
     }
-    .toggle-bar {
+
+    /* ── Music bar ── */
+    .music-bar {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 18px;
-      background: rgba(255, 255, 255, 0.04);
-      padding: 6px;
-      border-radius: 40px;
-      border: 1px solid rgba(212, 175, 55, 0.25);
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      background: rgba(212,175,55,0.07);
+      border: 1px solid rgba(212,175,55,0.22);
+      border-radius: 36px;
+      padding: 8px 18px;
+    }
+    .music-bar span { font-size: 0.82rem; color: #c0b49a; }
+    .music-btn {
+      background: linear-gradient(135deg, #d4af37, #b8860b);
+      border: none; color: #161208;
+      border-radius: 50%; width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1rem;
+      box-shadow: 0 2px 12px rgba(212,175,55,0.4);
+      transition: transform 0.15s;
+      flex-shrink: 0;
+    }
+    .music-btn:hover { transform: scale(1.12); }
+    .music-label { font-size: 0.78rem; color: #d4af37; font-style: italic; }
+
+    /* ── Toggle bar ── */
+    .toggle-bar {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 8px; margin-bottom: 18px;
+      background: rgba(255,255,255,0.04);
+      padding: 6px; border-radius: 40px;
+      border: 1px solid rgba(212,175,55,0.25);
     }
     .toggle-btn {
-      background: transparent;
-      border: none;
-      color: #b3a998;
-      padding: 9px 18px;
-      border-radius: 30px;
-      font-size: 0.86rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      font-family: inherit;
+      background: transparent; border: none; color: #b3a998;
+      padding: 9px 18px; border-radius: 30px;
+      font-size: 0.86rem; font-weight: 500; cursor: pointer;
+      transition: all 0.25s ease; font-family: inherit;
     }
     .toggle-btn.active {
       background: linear-gradient(135deg, #d4af37, #b8860b);
-      color: #161208;
-      font-weight: 700;
-      box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4);
+      color: #161208; font-weight: 700;
+      box-shadow: 0 4px 18px rgba(212,175,55,0.4);
     }
-    .toggle-btn:hover:not(.active) {
-      color: #f7eedb;
-      background: rgba(255, 255, 255, 0.06);
-    }
+    .toggle-btn:hover:not(.active) { color: #f7eedb; background: rgba(255,255,255,0.06); }
+
+    /* ── 3D viewer ── */
     .viewer-card {
-      width: 100%;
-      max-width: 880px;
-      height: 660px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(212, 175, 55, 0.22);
-      border-radius: 28px;
-      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      overflow: hidden;
-      position: relative;
+      width: 100%; max-width: 880px; height: 660px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(212,175,55,0.22); border-radius: 28px;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.1);
+      overflow: hidden; position: relative;
     }
-    model-viewer {
-      width: 100%;
-      height: 100%;
-      --poster-color: transparent;
+    model-viewer { width: 100%; height: 100%; --poster-color: transparent; }
+    .ar-button {
+      position: absolute; top: 18px; right: 18px;
+      background: linear-gradient(135deg, #d4af37, #b8860b);
+      color: #181308; border: none; border-radius: 30px;
+      padding: 10px 22px; font-size: 0.88rem; font-weight: 700;
+      letter-spacing: 0.05em; cursor: pointer;
+      box-shadow: 0 4px 20px rgba(212,175,55,0.45);
+      display: flex; align-items: center; gap: 8px; z-index: 10;
     }
     .controls-hint {
-      position: absolute;
-      bottom: 18px;
-      left: 50%;
+      position: absolute; bottom: 18px; left: 50%;
       transform: translateX(-50%);
-      background: rgba(18, 16, 14, 0.82);
+      background: rgba(18,16,14,0.82);
       backdrop-filter: blur(12px);
-      padding: 9px 22px;
-      border-radius: 30px;
-      font-size: 0.82rem;
-      color: #dcd0bc;
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      pointer-events: none;
-      white-space: nowrap;
+      padding: 9px 22px; border-radius: 30px;
+      font-size: 0.82rem; color: #dcd0bc;
+      border: 1px solid rgba(212,175,55,0.25);
+      pointer-events: none; white-space: nowrap;
     }
+
+    /* ── Wedding website CTA ── */
+    .cta-row {
+      margin-top: 20px;
+      display: flex; flex-wrap: wrap; gap: 12px;
+      justify-content: center; width: 100%; max-width: 880px;
+    }
+    .cta-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, #d4af37, #b8860b);
+      color: #161208; font-weight: 700; font-size: 0.95rem;
+      text-decoration: none; padding: 13px 30px; border-radius: 40px;
+      box-shadow: 0 4px 22px rgba(212,175,55,0.45); letter-spacing: 0.5px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212,175,55,0.6); }
+    .cta-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent;
+      color: #d4af37; font-weight: 600; font-size: 0.90rem;
+      text-decoration: none; padding: 13px 24px; border-radius: 40px;
+      border: 1px solid rgba(212,175,55,0.5); letter-spacing: 0.5px;
+      transition: background 0.2s;
+    }
+    .cta-secondary:hover { background: rgba(212,175,55,0.1); }
+
+    /* ── Feature callout ── */
+    .feature-callout {
+      width: 100%; max-width: 880px; margin-top: 20px;
+      background: rgba(212,175,55,0.06);
+      border: 1px solid rgba(212,175,55,0.25); border-radius: 16px;
+      padding: 14px 20px; display: flex; align-items: center; gap: 14px;
+    }
+    .feature-callout .icon { font-size: 1.8rem; }
+    .feature-callout .text h4 { color: #f5ecd7; font-size: 0.95rem; font-weight: 600; margin-bottom: 2px; }
+    .feature-callout .text p { color: #beb4a5; font-size: 0.82rem; line-height: 1.4; }
+
+    /* ── Steps ── */
     .instructions {
-      width: 100%;
-      max-width: 880px;
-      margin-top: 24px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
+      width: 100%; max-width: 880px; margin-top: 24px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;
     }
     .card-step {
-      background: rgba(255, 255, 255, 0.025);
-      border: 1px solid rgba(212, 175, 55, 0.15);
-      border-radius: 18px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(212,175,55,0.15); border-radius: 18px;
+      padding: 20px; display: flex; flex-direction: column; gap: 8px;
     }
-    .card-step .num {
-      font-family: 'Cinzel', serif;
-      font-size: 1.4rem;
-      color: #d4af37;
-      font-weight: 700;
+    .card-step .num { font-family: 'Cinzel', serif; font-size: 1.4rem; color: #d4af37; font-weight: 700; }
+    .card-step h3 { font-size: 1rem; color: #f2ebd9; font-weight: 600; }
+    .card-step p { font-size: 0.85rem; color: #a69e91; line-height: 1.45; }
+
+    /* ── Downloads ── */
+    .asset-downloads { width: 100%; max-width: 880px; margin-top: 28px; text-align: center; }
+    .asset-downloads a {
+      color: #d4af37; text-decoration: none; font-size: 0.85rem;
+      margin: 0 10px; border-bottom: 1px dotted rgba(212,175,55,0.4);
     }
-    .card-step h3 {
-      font-size: 1rem;
-      color: #f2ebd9;
-      font-weight: 600;
+    .asset-downloads a:hover { color: #fff; }
+
+    /* ── rivawedding.online footer ── */
+    footer {
+      margin-top: 40px; text-align: center; padding-top: 24px;
+      border-top: 1px solid rgba(212,175,55,0.15); width: 100%; max-width: 880px;
     }
-    .card-step p {
-      font-size: 0.85rem;
-      color: #a69e91;
-      line-height: 1.45;
-    }
+    footer p { font-size: 0.82rem; color: #7a7265; }
+    footer a { color: #d4af37; text-decoration: none; }
+    footer a:hover { color: #fff; }
   </style>
 </head>
 <body>
@@ -163,8 +200,22 @@
   <header>
     <div class="badge">Augmented Reality Experience</div>
     <h1>Vandan &amp; Riddhi</h1>
-    <p class="date-place">Save the Date &bull; 29.12.2027</p>
+    <p class="date-place">Save the Date &bull; 29 · 12 · 2027</p>
   </header>
+
+  <!-- ── B: rivawedding.online Music player + website CTA ── -->
+  <div class="music-bar">
+    <button class="music-btn" id="music-btn" onclick="toggleMusic()" title="Play / Pause wedding music">▶</button>
+    <div>
+      <div class="music-label">🎵 Wedding Celebration Music</div>
+      <span>Tap to play background music while you explore the AR stage</span>
+    </div>
+    <!-- E: Audio element — host a royalty-free wedding instrumental here -->
+    <audio id="bgm" loop preload="none">
+      <!-- Royalty-free wedding music from pixabay (CDN-safe) -->
+      <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8e1bdaaa25.mp3" type="audio/mpeg">
+    </audio>
+  </div>
 
   <div class="toggle-bar">
     <button class="toggle-btn active" id="btn-stage" onclick="switchModel('stage')">3D Ground Stage (Lawn &amp; Arch)</button>
@@ -175,7 +226,7 @@
   <div class="viewer-card">
     <model-viewer
       id="ar-viewer"
-      src="vandan_riddhi_stage_v2.glb"
+      src="output/vandan_riddhi_stage_particles.glb"
       ar
       ar-modes="webxr scene-viewer quick-look"
       camera-controls
@@ -188,58 +239,125 @@
       exposure="1.05"
       environment-image="neutral"
       camera-orbit="25deg 75deg 2.6m"
-      alt="Vandan and Riddhi 3D Wedding Ground Stage">
+      alt="Vandan and Riddhi 3D Wedding Ground Stage with floating rose petals and fairy dust">
+
+      <button slot="ar-button" class="ar-button">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+        View in your space (AR)
+      </button>
     </model-viewer>
     <div class="controls-hint">&bull; Click &amp; drag to orbit in 3D &bull; Scroll to zoom &bull; Tap 'View in AR' on mobile &bull;</div>
   </div>
 
-  <div style="margin-top: 20px; text-align: center; width: 100%; max-width: 880px;">
-    <a href="https://rivawedding.online" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #d4af37, #b8860b); color: #161208; font-weight: 700; font-size: 0.95rem; text-decoration: none; padding: 13px 30px; border-radius: 40px; box-shadow: 0 4px 22px rgba(212, 175, 55, 0.45); letter-spacing: 0.5px;">
-      <span>💍</span> Visit Official Wedding Website &bull; rivawedding.online <span>&rarr;</span>
+  <!-- ── B: Prominent rivawedding.online CTA buttons ── -->
+  <div class="cta-row">
+    <a href="https://rivawedding.online" target="_blank" rel="noopener noreferrer" class="cta-primary">
+      💍 Visit Our Wedding Website &bull; rivawedding.online &rarr;
     </a>
+    <a href="https://mywebar.com/p/Project_0_9ewh5s59np" target="_blank" rel="noopener noreferrer" class="cta-secondary">
+      📱 Open AR in MyWebAR
+    </a>
+  </div>
+
+  <div class="feature-callout" id="callout-box">
+    <div class="icon">🌸</div>
+    <div class="text">
+      <h4 id="callout-title">3D Garden Stage — 30 Blush Rose Petals &amp; 20 Gold Fairy Sparkles</h4>
+      <p id="callout-desc">Vandan &amp; Riddhi stand on a lush green lawn with a champagne-gold rim, surrounded by magically drifting blush petals and twinkling golden fairy dust orbiting the floral arch.</p>
+    </div>
   </div>
 
   <div class="instructions">
     <div class="card-step">
       <span class="num">01</span>
       <h3>Tap or Scan Card</h3>
-      <p>Tap your NFC-enabled phone against the back of the physical card, or scan the QR code with your camera app.</p>
+      <p>Tap your NFC-enabled phone to the back of the card, or scan the QR code with your camera app.</p>
     </div>
     <div class="card-step">
       <span class="num">02</span>
       <h3>Tap 'View in your space'</h3>
-      <p>Tap the gold AR button above to launch camera mode instantly in Safari (iOS) or Chrome (Android)—no app install required.</p>
+      <p>Hit the gold AR button to launch camera mode instantly in Safari (iOS) or Chrome (Android) — no app needed.</p>
     </div>
     <div class="card-step">
       <span class="num">03</span>
       <h3>Experience the 3D Stage</h3>
-      <p>Vandan &amp; Riddhi appear on their wedding stage with real ground depth, natural lighting, and photographic clarity!</p>
+      <p>Vandan &amp; Riddhi appear on their wedding stage with floating rose petals, gold sparkles, and photographic clarity!</p>
+    </div>
+    <div class="card-step">
+      <span class="num">04</span>
+      <h3>Visit rivawedding.online</h3>
+      <p>Tap the gold "Visit Our Wedding Website" button above for RSVP, venue details, and the full wedding programme.</p>
     </div>
   </div>
+
+  <div class="asset-downloads">
+    <a href="output/vandan_riddhi_stage_particles.glb" download>⬇ Download 3D Stage GLB</a>
+    <a href="output/vandan_riddhi_card_back_final.png" download>⬇ Download Printable Card Back (High-Res QR)</a>
+    <a href="output/vandan_riddhi_card_back_with_qr.png" download>⬇ Download Card Back (Original)</a>
+  </div>
+
+  <footer>
+    <p>Official Wedding Website: <a href="https://rivawedding.online" target="_blank">rivawedding.online</a></p>
+    <p style="margin-top:6px;">AR powered by <a href="https://mywebar.com/p/Project_0_9ewh5s59np" target="_blank">MyWebAR</a> &bull; 3D model hosted on GitHub Pages</p>
+  </footer>
 
   <script>
     const viewer = document.getElementById('ar-viewer');
     const btnStage = document.getElementById('btn-stage');
-    const btnCard = document.getElementById('btn-card');
+    const btnCard  = document.getElementById('btn-card');
     const btnPhoto = document.getElementById('btn-photo');
+    const calloutTitle = document.getElementById('callout-title');
+    const calloutDesc  = document.getElementById('callout-desc');
+    const bgm      = document.getElementById('bgm');
+    const musicBtn = document.getElementById('music-btn');
+    let   playing  = false;
 
+    // ── E: Music toggle ──────────────────────────────────────────────────────
+    function toggleMusic() {
+      if (playing) {
+        bgm.pause();
+        musicBtn.textContent = '▶';
+        playing = false;
+      } else {
+        bgm.play().then(() => {
+          musicBtn.textContent = '⏸';
+          playing = true;
+        }).catch(() => {
+          // Autoplay blocked — show user-friendly message
+          musicBtn.textContent = '▶';
+          alert('Tap the ▶ button again to start the music!');
+        });
+      }
+    }
+
+    // ── Model switcher ───────────────────────────────────────────────────────
     function switchModel(type) {
-      btnStage.classList.remove('active');
-      btnCard.classList.remove('active');
-      btnPhoto.classList.remove('active');
-
+      [btnStage, btnCard, btnPhoto].forEach(b => b.classList.remove('active'));
       if (type === 'stage') {
-        viewer.src = 'vandan_riddhi_stage_v2.glb';
+        viewer.src = 'output/vandan_riddhi_stage_particles.glb';
         viewer.cameraOrbit = '25deg 75deg 2.6m';
         btnStage.classList.add('active');
+        calloutTitle.textContent = '3D Garden Stage — 30 Blush Rose Petals & 20 Gold Fairy Sparkles';
+        calloutDesc.textContent = 'Vandan & Riddhi stand on a lush green lawn with a champagne-gold rim, surrounded by magically drifting blush petals and twinkling golden fairy dust orbiting the floral arch.';
+        document.querySelector('.feature-callout .icon').textContent = '🌸';
       } else if (type === 'card') {
-        viewer.src = 'vandan_riddhi_card_3D_AR.glb';
+        viewer.src = 'output/vandan_riddhi_card_3D_AR.glb';
         viewer.cameraOrbit = '0deg 85deg 2.2m';
         btnCard.classList.add('active');
+        calloutTitle.textContent = 'Save the Date Card 3D Pop-Out';
+        calloutDesc.textContent = 'Ultralight model calibrated to pop forward from the Canva card arch with 2.8 cm depth.';
+        document.querySelector('.feature-callout .icon').textContent = '💌';
       } else {
-        viewer.src = 'vandan_riddhi_3D_AR.glb';
+        viewer.src = 'output/vandan_riddhi_3D_AR.glb';
         viewer.cameraOrbit = '0deg 85deg 2.4m';
         btnPhoto.classList.add('active');
+        calloutTitle.textContent = 'Garden Photo 2.5D Frame with Champagne-Gold Bevels';
+        calloutDesc.textContent = 'Luxury photographic framed model showing the lush garden background, layered couple cutout, and soft ambient drop shadows.';
+        document.querySelector('.feature-callout .icon').textContent = '🌿';
       }
     }
   </script>
