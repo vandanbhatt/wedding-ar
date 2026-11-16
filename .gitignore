@@ -1,0 +1,15 @@
+# Large ML models (>100MB rejected by GitHub)
+models/
+*.onnx
+
+# Blender backups
+*.blend1
+*.blend@
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS & temporary files
+.DS_Store
+Thumbs.db
