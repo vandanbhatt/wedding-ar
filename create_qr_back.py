@@ -3,7 +3,7 @@ import numpy as np
 import qrcode
 from PIL import Image
 
-def generate_card_back(url="https://vandanbhatt.github.io/wedding-ar/"):
+def generate_card_back(url="https://mywebar.com/p/Project_0_9ewh5s59np"):
     back_img = Image.open("card_back.jpg").convert("RGB")
     bw, bh = back_img.size
 
